@@ -1,12 +1,23 @@
+import { useNavigate } from 'react-router-dom';
 import useForm from 'hooks/useForm';
 import authValidate from 'utils/authValidate';
+import { signInAsync } from 'api';
 
 const SignInForm = () => {
+  const navigate = useNavigate();
   const { values, errors, touched, handleChange, handleSubmit } = useForm({
     initialValues: { email: '', password: '' },
     validate: authValidate,
-    onSubmit: () => {
-      alert('submit!');
+    onSubmit: async (values) => {
+      try {
+        await signInAsync(values);
+        // 성공 시 /todo로 리다이렉트
+        navigate('/todo');
+      } catch (err) {
+        console.log(err);
+        if (err?.response?.status === 401 || err?.response?.status === 404)
+          alert('이메일 또는 비밀번호를 다시 확인하세요');
+      }
     },
   });
 

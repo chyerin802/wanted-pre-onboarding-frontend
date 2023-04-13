@@ -1,3 +1,3 @@
-import { signUpAsync } from './auth';
+import { signUpAsync, signInAsync } from './auth';
 
-export { signUpAsync };
+export { signUpAsync, signInAsync };

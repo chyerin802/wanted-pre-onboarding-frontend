@@ -1,6 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import useForm from 'hooks/useForm';
 import authValidate from 'utils/authValidate';
-import { useNavigate } from 'react-router-dom';
 import { signUpAsync } from 'api';
 
 const SignUpForm = () => {
