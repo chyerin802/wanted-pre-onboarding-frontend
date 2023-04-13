@@ -1,12 +1,22 @@
 import useForm from 'hooks/useForm';
 import authValidate from 'utils/authValidate';
+import { useNavigate } from 'react-router-dom';
+import { signUpAsync } from 'api';
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
   const { values, errors, touched, handleChange, handleSubmit } = useForm({
     initialValues: { email: '', password: '' },
     validate: authValidate,
-    onSubmit: () => {
-      alert('submit!');
+    onSubmit: async (values) => {
+      try {
+        await signUpAsync(values);
+        // 성공 시 /signin으로 리다이렉트
+        navigate('/signin');
+      } catch (err) {
+        // 실패 시 alert
+        alert(err?.response?.data?.message);
+      }
     },
   });
 
@@ -14,7 +24,7 @@ const SignUpForm = () => {
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label>
       <input
-        type="email"
+        type="text"
         name="email"
         id="email"
         data-testid="email-input"
@@ -33,7 +43,7 @@ const SignUpForm = () => {
       ></input>
       {touched.password && errors.password && <span>{errors.password}</span>}
       <button
-        data-testid="signin-button"
+        data-testid="signup-button"
         disabled={Object.keys(errors).length !== 0}
       >
         submit
