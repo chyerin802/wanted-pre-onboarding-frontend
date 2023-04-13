@@ -1,5 +1,5 @@
-import useForm from '../hooks/useForm';
-import authValidate from '../utils/authValidate';
+import useForm from 'hooks/useForm';
+import authValidate from 'utils/authValidate';
 
 const SignInForm = () => {
   const { values, errors, touched, handleChange, handleSubmit } = useForm({
