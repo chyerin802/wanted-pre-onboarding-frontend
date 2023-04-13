@@ -34,7 +34,7 @@ const useForm = ({ initialValues, validate, onSubmit }) => {
     const errors = validate(values);
 
     // 아무런 에러가 존재하지 않는다면
-    if (Object.keys(errors).length === 0) onSubmit();
+    if (Object.keys(errors).length === 0) onSubmit(values);
     else setErrors({ ...errors });
   };
 
