@@ -8,10 +8,10 @@ import './App.css';
 function App() {
   return (
     <Routes>
-      <Route path='/signin' element={<SignInPage />}></Route>
-      <Route path='/signup' element={<SignUpPage />}></Route>
-      <Route path='/todo' element={<TodoPage />}></Route>
-      <Route path='/*' element={<MainPage />}></Route>
+      <Route path="/signin" element={<SignInPage />}></Route>
+      <Route path="/signup" element={<SignUpPage />}></Route>
+      <Route path="/todo" element={<TodoPage />}></Route>
+      <Route path="/*" element={<MainPage />}></Route>
     </Routes>
   );
 }
