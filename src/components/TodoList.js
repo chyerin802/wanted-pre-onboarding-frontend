@@ -5,7 +5,14 @@ const TodoList = ({ todoList }) => {
   return (
     <ul>
       {todoList.map((el) => {
-        return <Todo key={el.id} todo={el} />;
+        return (
+          <Todo
+            key={el.id}
+            id={el.id}
+            todo={el.todo}
+            isCompleted={el.isCompleted}
+          />
+        );
       })}
     </ul>
   );
