@@ -21,3 +21,13 @@ export const getTodos = async () => {
     throw err;
   }
 };
+
+export const updateTodo = async (id, newTodo) => {
+  try {
+    const res = await authInstance.put(`${API_PATH_TODO}/${id}`, newTodo);
+    return res?.data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
