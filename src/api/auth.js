@@ -1,4 +1,4 @@
-import defaultInstance from './instance';
+import { defaultInstance } from './instance';
 
 const API_PATH_SIGNUP = '/auth/signup';
 const API_PATH_SIGNIN = '/auth/signin';
