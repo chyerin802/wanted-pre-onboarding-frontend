@@ -1,22 +1,7 @@
-import { useEffect } from 'react';
 import Todo from './Todo';
 import PropTypes from 'prop-types';
-import { getTodos } from 'api';
 
-const TodoList = ({ todoList, setTodoList }) => {
-  useEffect(() => {
-    const asyncGetTodoList = async () => {
-      try {
-        const res = await getTodos();
-        setTodoList(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    asyncGetTodoList();
-  }, [setTodoList]);
-
+const TodoList = ({ todoList }) => {
   return (
     <ul>
       {todoList.map((el) => {
@@ -28,7 +13,6 @@ const TodoList = ({ todoList, setTodoList }) => {
 
 TodoList.propTypes = {
   todoList: PropTypes.array.isRequired,
-  setTodoList: PropTypes.func.isRequired,
 };
 
 export default TodoList;
