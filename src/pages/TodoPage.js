@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import TodoList from 'components/TodoList';
+import TodoCreateForm from 'components/TodoCreateForm';
 import isLogin from 'utils/isLogin';
 
 const TodoPage = () => {
@@ -8,6 +9,7 @@ const TodoPage = () => {
   return (
     <div>
       <div>TodoPage</div>
+      <TodoCreateForm />
       <TodoList></TodoList>
     </div>
   );

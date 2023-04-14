@@ -15,6 +15,6 @@ authInstance.defaults.baseURL = API_BASE_URL;
 
 // 2. 인증 요청은 헤더에 토큰 포함
 const AUTH_TOKEN = localStorage.getItem('access_token');
-authInstance.defaults.headers['Authorization'] = `Bearer ${AUTH_TOKEN}`;
+authInstance.defaults.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`;
 
 export { defaultInstance, authInstance };
