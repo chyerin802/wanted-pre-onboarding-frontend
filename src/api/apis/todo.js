@@ -1,4 +1,4 @@
-import { authInstance } from './instance';
+import { authInstance } from 'api/instance';
 
 const API_PATH_TODO = '/todos';
 
