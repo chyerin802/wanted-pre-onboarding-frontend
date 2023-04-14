@@ -1,28 +1,18 @@
 import Todo from './Todo';
+import PropTypes from 'prop-types';
 
-const dummyTodoList = [
-  {
-    id: 1,
-    todo: '과제하기',
-    isCompleted: false,
-    userId: 1,
-  },
-  {
-    id: 2,
-    todo: '과제하기2',
-    isCompleted: true,
-    userId: 1,
-  },
-];
-
-const TodoList = () => {
+const TodoList = ({ todoList }) => {
   return (
     <ul>
-      {dummyTodoList.map((el) => {
+      {todoList.map((el) => {
         return <Todo key={el.id} todo={el} />;
       })}
     </ul>
   );
+};
+
+TodoList.propTypes = {
+  todoList: PropTypes.array.isRequired,
 };
 
 export default TodoList;
