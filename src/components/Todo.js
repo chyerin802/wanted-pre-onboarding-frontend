@@ -14,6 +14,11 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   };
 
   const handleClickSubmitBtn = async () => {
+    if (curTodo.todo === todo) {
+      setIsEditMode(false);
+      return;
+    }
+
     try {
       await updateTodo(id, { ...curTodo, todo: curTodo.todo });
       setIsEditMode(false);
