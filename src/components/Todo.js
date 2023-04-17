@@ -9,14 +9,20 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   });
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleEditModeOn = () => setIsEditMode(true);
-  const handleEditModeOff = () => setIsEditMode(false);
-
   const handleTodoChange = (e) => {
     setCurTodo({ ...curTodo, todo: e.target.value });
   };
 
-  const handleCheckBoxChange = async (e) => {
+  const handleClickSubmitBtn = async () => {
+    try {
+      await updateTodo(id, { ...curTodo, todo: curTodo.todo });
+      setIsEditMode(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleChangeCheckBox = async () => {
     const newTodo = { ...curTodo, isCompleted: !curTodo.isCompleted };
     try {
       await updateTodo(id, newTodo);
@@ -34,7 +40,7 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
         <input
           type="checkbox"
           checked={curTodo.isCompleted}
-          onChange={handleCheckBoxChange}
+          onChange={handleChangeCheckBox}
         />
         <input
           data-testid="modify-input"
@@ -42,24 +48,30 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
           value={curTodo.todo}
           onChange={handleTodoChange}
         />
-        <button data-testid="submit-button">제출</button>
-        <button data-testid="cancel-button" onClick={handleEditModeOff}>
+        <button data-testid="submit-button" onClick={handleClickSubmitBtn}>
+          제출
+        </button>
+        <button
+          data-testid="cancel-button"
+          onClick={() => setIsEditMode(false)}
+        >
           취소
         </button>
       </li>
     );
   }
+
   return (
     <li>
       <label>
         <input
           type="checkbox"
           checked={curTodo.isCompleted}
-          onChange={handleCheckBoxChange}
+          onChange={handleChangeCheckBox}
         />
         <span>{curTodo.todo}</span>
       </label>
-      <button data-testid="modify-button" onClick={handleEditModeOn}>
+      <button data-testid="modify-button" onClick={() => setIsEditMode(true)}>
         수정
       </button>
       <button data-testid="delete-button" onClick={handleClickDelete}>
