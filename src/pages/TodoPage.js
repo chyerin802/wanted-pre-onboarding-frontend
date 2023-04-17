@@ -28,7 +28,7 @@ const TodoPage = () => {
     <div>
       <div>TodoPage</div>
       <TodoCreateForm todoList={todoList} setTodoList={setTodoList} />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} setTodoList={setTodoList} />
     </div>
   );
 };
