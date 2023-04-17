@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SignInForm from 'components/SignInForm';
-import { Navigate } from 'react-router-dom';
 import isLogin from 'utils/isLogin';
 
 const SignInPage = () => {
-  if (isLogin()) return <Navigate to="/todo" />;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isLogin()) {
+      navigate('/todo');
+      return;
+    }
+  }, [navigate]);
+
   return (
     <div>
       <div>SignIn</div>

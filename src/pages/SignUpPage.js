@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SignUpForm from 'components/SignUpForm';
-import { Navigate } from 'react-router-dom';
 import isLogin from 'utils/isLogin';
 
 const SignUpPage = () => {
-  if (isLogin()) return <Navigate to="/todo" />;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLogin()) {
+      navigate('/todo');
+      return;
+    }
+  }, [navigate]);
+
   return (
     <div>
       <div>SignUp</div>
