@@ -31,3 +31,12 @@ export const updateTodo = async (id, newTodo) => {
     throw err;
   }
 };
+
+export const deleteTodo = async (id) => {
+  try {
+    await authInstance.delete(`${API_PATH_TODO}/${id}`);
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};

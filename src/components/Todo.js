@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { updateTodo } from 'api/apis/todo';
 
-const Todo = ({ id, todo, isCompleted }) => {
+const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   const [curTodo, setCurTodo] = useState({
     todo,
     isCompleted,
@@ -18,6 +18,8 @@ const Todo = ({ id, todo, isCompleted }) => {
     }
   };
 
+  const handleClickDelete = () => handleDeleteTodo(id);
+
   return (
     <li>
       <label>
@@ -29,7 +31,9 @@ const Todo = ({ id, todo, isCompleted }) => {
         <span>{todo}</span>
       </label>
       <button data-testid="modify-button">수정</button>
-      <button data-testid="delete-button">삭제</button>
+      <button data-testid="delete-button" onClick={handleClickDelete}>
+        삭제
+      </button>
     </li>
   );
 };
@@ -39,6 +43,7 @@ Todo.propTypes = {
   id: PropTypes.number.isRequired,
   todo: PropTypes.string.isRequired,
   isCompleted: PropTypes.bool.isRequired,
+  handleDeleteTodo: PropTypes.func.isRequired,
 };
 
 export default Todo;
