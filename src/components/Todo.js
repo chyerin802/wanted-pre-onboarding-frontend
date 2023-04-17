@@ -3,12 +3,49 @@ import PropTypes from 'prop-types';
 import { updateTodo } from 'api/apis/todo';
 
 const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
+  // 현재 Todo의 값을 저장
   const [curTodo, setCurTodo] = useState({
     todo,
     isCompleted,
   });
+  // 수정 모드 활성화 여부
+  const [isEditMode, setIsEditMode] = useState(false);
+  // 수정 모드에서 변화되는 Todo의 내용
+  const [newTodoContent, setNewTodoContent] = useState(todo);
 
-  const handleCheckBoxChange = async (e) => {
+  // 수정 모드 시 input change handler
+  const handleTodoInputChange = (e) => {
+    setNewTodoContent(e.target.value);
+  };
+
+  // 제출 버튼 click handler
+  const handleClickSubmitBtn = async () => {
+    // 기존 내용에서 변화가 없을 때
+    if (newTodoContent === curTodo.todo) {
+      // 서버에 불필요한 요청 없이 수정 모드 off
+      setIsEditMode(false);
+      return;
+    }
+
+    const newTodo = { ...curTodo, todo: newTodoContent };
+
+    try {
+      await updateTodo(id, newTodo);
+      setCurTodo(newTodo);
+      setIsEditMode(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 취소 버튼 click handler
+  const handleClickCancleBtn = async () => {
+    setNewTodoContent(curTodo.todo);
+    setIsEditMode(false);
+  };
+
+  // checkbox change handler
+  const handleChangeCheckBox = async () => {
     const newTodo = { ...curTodo, isCompleted: !curTodo.isCompleted };
     try {
       await updateTodo(id, newTodo);
@@ -18,7 +55,33 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
     }
   };
 
+  // 삭제 버튼 click handler
   const handleClickDelete = () => handleDeleteTodo(id);
+
+  // 수정 모드 시
+  if (isEditMode) {
+    return (
+      <li>
+        <input
+          type="checkbox"
+          checked={curTodo.isCompleted}
+          onChange={handleChangeCheckBox}
+        />
+        <input
+          data-testid="modify-input"
+          type="text"
+          value={newTodoContent}
+          onChange={handleTodoInputChange}
+        />
+        <button data-testid="submit-button" onClick={handleClickSubmitBtn}>
+          제출
+        </button>
+        <button data-testid="cancel-button" onClick={handleClickCancleBtn}>
+          취소
+        </button>
+      </li>
+    );
+  }
 
   return (
     <li>
@@ -26,11 +89,13 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
         <input
           type="checkbox"
           checked={curTodo.isCompleted}
-          onChange={handleCheckBoxChange}
+          onChange={handleChangeCheckBox}
         />
-        <span>{todo}</span>
+        <span>{curTodo.todo}</span>
       </label>
-      <button data-testid="modify-button">수정</button>
+      <button data-testid="modify-button" onClick={() => setIsEditMode(true)}>
+        수정
+      </button>
       <button data-testid="delete-button" onClick={handleClickDelete}>
         삭제
       </button>
