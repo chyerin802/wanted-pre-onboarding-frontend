@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { updateTodo } from 'api/apis/todo';
 
 const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
-  // 서버에 반영될 Todo의 값들을 저장
+  // 현재 Todo의 값을 저장
   const [curTodo, setCurTodo] = useState({
     todo,
     isCompleted,
@@ -13,10 +13,12 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   // 수정 모드에서 변화되는 Todo의 내용
   const [newTodoContent, setNewTodoContent] = useState(todo);
 
+  // 수정 모드 시 input change handler
   const handleTodoInputChange = (e) => {
     setNewTodoContent(e.target.value);
   };
 
+  // 제출 버튼 click handler
   const handleClickSubmitBtn = async () => {
     // 기존 내용에서 변화가 없을 때
     if (newTodoContent === curTodo.todo) {
@@ -36,11 +38,13 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
     }
   };
 
+  // 취소 버튼 click handler
   const handleClickCancleBtn = async () => {
     setNewTodoContent(curTodo.todo);
     setIsEditMode(false);
   };
 
+  // checkbox change handler
   const handleChangeCheckBox = async () => {
     const newTodo = { ...curTodo, isCompleted: !curTodo.isCompleted };
     try {
@@ -51,8 +55,10 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
     }
   };
 
+  // 삭제 버튼 click handler
   const handleClickDelete = () => handleDeleteTodo(id);
 
+  // 수정 모드 시
   if (isEditMode) {
     return (
       <li>
