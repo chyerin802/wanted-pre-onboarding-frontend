@@ -7,6 +7,10 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
     todo,
     isCompleted,
   });
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const handleEditModeOn = () => setIsEditMode(true);
+  const handleEditModeOff = () => setIsEditMode(false);
 
   const handleCheckBoxChange = async (e) => {
     const newTodo = { ...curTodo, isCompleted: !curTodo.isCompleted };
@@ -20,6 +24,24 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
 
   const handleClickDelete = () => handleDeleteTodo(id);
 
+  if (isEditMode) {
+    return (
+      <li>
+        <label>
+          <input
+            type="checkbox"
+            checked={curTodo.isCompleted}
+            onChange={handleCheckBoxChange}
+          />
+        </label>
+        <input data-testid="modify-input" />
+        <button data-testid="submit-button">제출</button>
+        <button data-testid="cancel-button" onClick={handleEditModeOff}>
+          취소
+        </button>
+      </li>
+    );
+  }
   return (
     <li>
       <label>
@@ -30,7 +52,9 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
         />
         <span>{todo}</span>
       </label>
-      <button data-testid="modify-button">수정</button>
+      <button data-testid="modify-button" onClick={handleEditModeOn}>
+        수정
+      </button>
       <button data-testid="delete-button" onClick={handleClickDelete}>
         삭제
       </button>
