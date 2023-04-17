@@ -12,6 +12,10 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   const handleEditModeOn = () => setIsEditMode(true);
   const handleEditModeOff = () => setIsEditMode(false);
 
+  const handleTodoChange = (e) => {
+    setCurTodo({ ...curTodo, todo: e.target.value });
+  };
+
   const handleCheckBoxChange = async (e) => {
     const newTodo = { ...curTodo, isCompleted: !curTodo.isCompleted };
     try {
@@ -27,14 +31,17 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   if (isEditMode) {
     return (
       <li>
-        <label>
-          <input
-            type="checkbox"
-            checked={curTodo.isCompleted}
-            onChange={handleCheckBoxChange}
-          />
-        </label>
-        <input data-testid="modify-input" />
+        <input
+          type="checkbox"
+          checked={curTodo.isCompleted}
+          onChange={handleCheckBoxChange}
+        />
+        <input
+          data-testid="modify-input"
+          type="text"
+          value={curTodo.todo}
+          onChange={handleTodoChange}
+        />
         <button data-testid="submit-button">제출</button>
         <button data-testid="cancel-button" onClick={handleEditModeOff}>
           취소
@@ -50,7 +57,7 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
           checked={curTodo.isCompleted}
           onChange={handleCheckBoxChange}
         />
-        <span>{todo}</span>
+        <span>{curTodo.todo}</span>
       </label>
       <button data-testid="modify-button" onClick={handleEditModeOn}>
         수정
