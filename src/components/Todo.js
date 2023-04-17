@@ -3,28 +3,42 @@ import PropTypes from 'prop-types';
 import { updateTodo } from 'api/apis/todo';
 
 const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
+  // 서버에 반영될 Todo의 값들을 저장
   const [curTodo, setCurTodo] = useState({
     todo,
     isCompleted,
   });
+  // 수정 모드 활성화 여부
   const [isEditMode, setIsEditMode] = useState(false);
+  // 수정 모드에서 변화되는 Todo의 내용
+  const [newTodoContent, setNewTodoContent] = useState(todo);
 
-  const handleTodoChange = (e) => {
-    setCurTodo({ ...curTodo, todo: e.target.value });
+  const handleTodoInputChange = (e) => {
+    setNewTodoContent(e.target.value);
   };
 
   const handleClickSubmitBtn = async () => {
-    if (curTodo.todo === todo) {
+    // 기존 내용에서 변화가 없을 때
+    if (newTodoContent === curTodo.todo) {
+      // 서버에 불필요한 요청 없이 수정 모드 off
       setIsEditMode(false);
       return;
     }
 
+    const newTodo = { ...curTodo, todo: newTodoContent };
+
     try {
-      await updateTodo(id, { ...curTodo, todo: curTodo.todo });
+      await updateTodo(id, newTodo);
+      setCurTodo(newTodo);
       setIsEditMode(false);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleClickCancleBtn = async () => {
+    setNewTodoContent(curTodo.todo);
+    setIsEditMode(false);
   };
 
   const handleChangeCheckBox = async () => {
@@ -50,16 +64,13 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
         <input
           data-testid="modify-input"
           type="text"
-          value={curTodo.todo}
-          onChange={handleTodoChange}
+          value={newTodoContent}
+          onChange={handleTodoInputChange}
         />
         <button data-testid="submit-button" onClick={handleClickSubmitBtn}>
           제출
         </button>
-        <button
-          data-testid="cancel-button"
-          onClick={() => setIsEditMode(false)}
-        >
+        <button data-testid="cancel-button" onClick={handleClickCancleBtn}>
           취소
         </button>
       </li>
