@@ -6,11 +6,12 @@ import isLogin from 'utils/isLogin';
 const SignInPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
+    console.log('hi');
     if (isLogin()) {
       navigate('/todo');
       return;
     }
-  }, [navigate]);
+  });
 
   return (
     <div>
