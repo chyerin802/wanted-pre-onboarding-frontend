@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignInForm from 'components/SignInForm';
+import SignInForm from 'components/auth/SignInForm';
 import isLogin from 'utils/isLogin';
 
 const SignInPage = () => {
