@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import Title from 'components/Title';
 import isLogin from 'utils/isLogin';
 
 const MainPage = () => {
   return (
     <div>
-      <div>Wanted Pre-onboarding</div>
+      <Title>Wanted Pre-onboarding</Title>
       {isLogin() ? (
         <div>
           <Link to="/todo">

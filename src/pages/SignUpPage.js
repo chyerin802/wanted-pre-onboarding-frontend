@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignUpForm from 'components/auth/SignUpForm';
+import Title from 'components/Title';
 import isLogin from 'utils/isLogin';
 
 const SignUpPage = () => {
@@ -15,7 +16,7 @@ const SignUpPage = () => {
 
   return (
     <div>
-      <div>SignUp</div>
+      <Title>SignUp</Title>
       <SignUpForm></SignUpForm>
     </div>
   );

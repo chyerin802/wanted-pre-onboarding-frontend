@@ -8,8 +8,9 @@ const LayOut = styled.div`
 `;
 
 const Container = styled.div`
-  background: blue;
   padding: 50px;
+  display: flex;
+  justify-content: center;
 `;
 
 const MainLayOut = ({ children }) => {
