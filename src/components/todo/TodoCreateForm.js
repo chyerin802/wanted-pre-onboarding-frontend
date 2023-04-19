@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import { createTodo } from 'api';
+import TextInput from 'components/TextInput';
+
+const StyledTodoForm = styled.form`
+  display: flex;
+  align-items: center;
+`;
 
 const TodoCreateForm = ({ todoList, setTodoList }) => {
   const [newTodo, setNewTodo] = useState('');
@@ -17,17 +25,17 @@ const TodoCreateForm = ({ todoList, setTodoList }) => {
   };
 
   return (
-    <form onSubmit={handleTodoSubmit}>
-      <input
+    <StyledTodoForm onSubmit={handleTodoSubmit}>
+      <TextInput
         type="text"
         data-testid="new-todo-input"
         value={newTodo}
         onChange={handleTodoChange}
-      ></input>
+      ></TextInput>
       <button type="submit" data-testid="new-todo-add-button">
         추가
       </button>
-    </form>
+    </StyledTodoForm>
   );
 };
 
