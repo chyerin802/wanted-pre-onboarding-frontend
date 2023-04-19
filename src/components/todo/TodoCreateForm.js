@@ -10,11 +10,14 @@ const StyledTodoForm = styled.form`
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  min-height: max-content;
   height: 2.75rem;
 
   > * {
     height: 100%;
+  }
+
+  > div {
+    width: 100%;
   }
 `;
 

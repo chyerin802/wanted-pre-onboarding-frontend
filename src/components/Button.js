@@ -60,10 +60,6 @@ const fullWidthStyle = css`
     props.fullWidth &&
     css`
       width: 100%;
-      & + & {
-        margin-left: 0;
-        margin-top: 1rem;
-      }
     `}
 `;
 
@@ -93,6 +89,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
   color: white;
   font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
 
   /* 크기 */
