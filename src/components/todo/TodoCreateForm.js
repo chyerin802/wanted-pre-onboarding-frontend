@@ -16,9 +16,14 @@ const TodoCreateForm = ({ todoList, setTodoList }) => {
   const handleTodoChange = (e) => setNewTodo(e.target.value);
   const handleTodoSubmit = async (e) => {
     e.preventDefault();
+    if (newTodo === '') {
+      return;
+    }
+
     try {
       const res = await createTodo(newTodo);
       setTodoList([...todoList, res]);
+      setNewTodo('');
     } catch (err) {
       console.log(err);
     }
