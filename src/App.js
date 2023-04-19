@@ -4,7 +4,6 @@ import SignUpPage from './pages/SignUpPage';
 import TodoPage from './pages/TodoPage';
 import MainPage from './pages/MainPage';
 import MainLayOut from 'layouts/MainLayOut';
-import './App.css';
 
 function App() {
   return (
