@@ -1,7 +1,5 @@
 import { defaultInstance } from 'api/instance';
-
-const API_PATH_SIGNUP = '/auth/signup';
-const API_PATH_SIGNIN = '/auth/signin';
+import { API_PATH_SIGNIN, API_PATH_SIGNUP } from 'constants/api';
 
 export const signUpAsync = async (body) => {
   try {

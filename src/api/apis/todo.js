@@ -1,6 +1,5 @@
 import { authInstance } from 'api/instance';
-
-const API_PATH_TODO = '/todos';
+import { API_PATH_TODO } from 'constants/api';
 
 export const createTodo = async (todo) => {
   try {
