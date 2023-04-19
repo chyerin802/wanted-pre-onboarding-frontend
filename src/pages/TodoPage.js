@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TodoList from 'components/TodoList';
-import TodoCreateForm from 'components/TodoCreateForm';
+import TodoList from 'components/todo/TodoList';
+import TodoCreateForm from 'components/todo/TodoCreateForm';
+import Title from 'components/Title';
 import { getTodos } from 'api';
 import isLogin from 'utils/isLogin';
 
@@ -30,7 +31,7 @@ const TodoPage = () => {
 
   return (
     <div>
-      <div>TodoPage</div>
+      <Title>Todo</Title>
       <TodoCreateForm todoList={todoList} setTodoList={setTodoList} />
       <TodoList todoList={todoList} setTodoList={setTodoList} />
     </div>

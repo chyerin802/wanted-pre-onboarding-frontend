@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SignInForm from 'components/SignInForm';
+import { useNavigate, Link } from 'react-router-dom';
+import SignInForm from 'components/auth/SignInForm';
+import AuthLayOut from 'layouts/AuthLayOut';
 import isLogin from 'utils/isLogin';
+import Button from 'components/Button';
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -10,13 +12,17 @@ const SignInPage = () => {
       navigate('/todo');
       return;
     }
-  }, [navigate]);
+  });
 
   return (
-    <div>
-      <div>SignIn</div>
+    <AuthLayOut title="Sign In">
       <SignInForm></SignInForm>
-    </div>
+      <div className="auth-link">
+        <Link to="/signup">
+          <Button letter>sign up</Button>
+        </Link>
+      </div>
+    </AuthLayOut>
   );
 };
 

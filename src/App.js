@@ -3,16 +3,20 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import TodoPage from './pages/TodoPage';
 import MainPage from './pages/MainPage';
-import './App.css';
+import ErrorPage from 'pages/ErrorPage';
+import MainLayOut from 'layouts/MainLayOut';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/signin" element={<SignInPage />}></Route>
-      <Route path="/signup" element={<SignUpPage />}></Route>
-      <Route path="/todo" element={<TodoPage />}></Route>
-      <Route path="/*" element={<MainPage />}></Route>
-    </Routes>
+    <MainLayOut>
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/signin" element={<SignInPage />}></Route>
+        <Route path="/signup" element={<SignUpPage />}></Route>
+        <Route path="/todo" element={<TodoPage />}></Route>
+        <Route path="/*" element={<ErrorPage />}></Route>
+      </Routes>
+    </MainLayOut>
   );
 }
 

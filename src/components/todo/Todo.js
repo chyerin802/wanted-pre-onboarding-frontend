@@ -1,6 +1,27 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { updateTodo } from 'api/apis/todo';
+import Button from 'components/Button';
+
+const TodoItem = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.75rem;
+  > .todo-content {
+    display: flex;
+    align: center;
+    gap: 0.5rem;
+  }
+`;
+
+const TodoEditInput = styled.input`
+  border: none;
+  border-bottom: 1px solid var(--second-color);
+  font-size: 1rem;
+`;
 
 const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   // 현재 Todo의 값을 저장
@@ -61,31 +82,45 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
   // 수정 모드 시
   if (isEditMode) {
     return (
-      <li>
-        <input
-          type="checkbox"
-          checked={curTodo.isCompleted}
-          onChange={handleChangeCheckBox}
-        />
-        <input
-          data-testid="modify-input"
-          type="text"
-          value={newTodoContent}
-          onChange={handleTodoInputChange}
-        />
-        <button data-testid="submit-button" onClick={handleClickSubmitBtn}>
-          제출
-        </button>
-        <button data-testid="cancel-button" onClick={handleClickCancleBtn}>
-          취소
-        </button>
-      </li>
+      <TodoItem>
+        <div className="todo-content">
+          <input
+            type="checkbox"
+            checked={curTodo.isCompleted}
+            onChange={handleChangeCheckBox}
+          />
+          <TodoEditInput
+            data-testid="modify-input"
+            type="text"
+            value={newTodoContent}
+            onChange={handleTodoInputChange}
+            className="todo-edit-input"
+          />
+        </div>
+        <div>
+          <Button
+            data-testid="submit-button"
+            onClick={handleClickSubmitBtn}
+            outline
+          >
+            제출
+          </Button>
+          <Button
+            data-testid="cancel-button"
+            onClick={handleClickCancleBtn}
+            color="second"
+            letter
+          >
+            취소
+          </Button>
+        </div>
+      </TodoItem>
     );
   }
 
   return (
-    <li>
-      <label>
+    <TodoItem>
+      <label className="todo-content">
         <input
           type="checkbox"
           checked={curTodo.isCompleted}
@@ -93,13 +128,25 @@ const Todo = ({ id, todo, isCompleted, handleDeleteTodo }) => {
         />
         <span>{curTodo.todo}</span>
       </label>
-      <button data-testid="modify-button" onClick={() => setIsEditMode(true)}>
-        수정
-      </button>
-      <button data-testid="delete-button" onClick={handleClickDelete}>
-        삭제
-      </button>
-    </li>
+      <div>
+        <Button
+          data-testid="modify-button"
+          onClick={() => setIsEditMode(true)}
+          color="second"
+          letter
+        >
+          수정
+        </Button>
+        <Button
+          data-testid="delete-button"
+          onClick={handleClickDelete}
+          color="second"
+          letter
+        >
+          삭제
+        </Button>
+      </div>
+    </TodoItem>
   );
 };
 
