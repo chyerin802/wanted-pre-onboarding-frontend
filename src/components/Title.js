@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledTitle = styled.h1`
-  color: rgb(64,101,246);
-  font-size: 30px
-  font-weight: 600;
+  color: var(--main-color);
+  font-size: 30px;
+  font-weight: 700;
 `;
 
 /**
@@ -15,7 +15,7 @@ const Title = ({ children }) => {
 };
 
 Title.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.string,
 };
 
 export default Title;
