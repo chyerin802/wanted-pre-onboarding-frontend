@@ -9,6 +9,14 @@ npm install
 npm start
 ```
 
+### 폴더 생성 후 설치
+```
+git clone https://github.com/chyerin802/wanted-pre-onboarding-frontend.git
+cd wanted-pre-onboarding-frontend
+npm install
+npm start
+```
+
 ## 데모 영상 (배포 링크로 대체)
 https://wanted-pre-onboarding-yerin.netlify.app/
 
@@ -16,7 +24,7 @@ https://wanted-pre-onboarding-yerin.netlify.app/
 ### 1. 로그인 / 회원가입
 
 <details>
-<summary></summary>
+<summary>열기/닫기</summary>
 <div markdown="1">
 
 #### 1) Assignment 1 : 유효성 검사
@@ -44,7 +52,7 @@ https://wanted-pre-onboarding-yerin.netlify.app/
 ### 2. TODO LIST
 
 <details>
-<summary></summary>
+<summary>열기/닫기</summary>
 <div markdown="1">
 
 #### 5) Assignment 5 : TODO 리스트 불러오기
