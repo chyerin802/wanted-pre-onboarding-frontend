@@ -17,7 +17,8 @@ npm install
 npm start
 ```
 
-## 데모 영상 (배포 링크로 대체)
+## 데모 영상
+(배포 링크로 대체)
 https://wanted-pre-onboarding-yerin.netlify.app/
 
 ## 구현 기능
