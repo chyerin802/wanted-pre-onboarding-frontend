@@ -3,6 +3,7 @@ import useForm from 'hooks/useForm';
 import authValidate from 'utils/authValidate';
 import { signUpAsync } from 'api';
 import TextInput from 'components/TextInput';
+import Button from 'components/Button';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -51,12 +52,14 @@ const SignUpForm = () => {
       {touched.password && errors.password && (
         <span className="input__error-msg">{errors.password}</span>
       )}
-      <button
+      <Button
         data-testid="signup-button"
         disabled={Object.keys(errors).length !== 0}
+        size="medium"
+        fullWidth
       >
-        submit
-      </button>
+        Submit
+      </Button>
     </form>
   );
 };

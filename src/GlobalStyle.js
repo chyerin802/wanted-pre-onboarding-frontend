@@ -62,8 +62,9 @@ const GlobalStyle = createGlobalStyle`
   :root {
 
     /** color */
-    --main-color: rgb(64,101,246);
-    --second-color: rgb(225, 226, 227);
+    --main-color: #4065F6;
+    --second-color: #888888;
+    --light-color: #E1E2E3;
   }         
 `;
 

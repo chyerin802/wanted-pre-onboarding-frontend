@@ -4,10 +4,18 @@ import styled from 'styled-components';
 
 import { createTodo } from 'api';
 import TextInput from 'components/TextInput';
+import Button from 'components/Button';
 
 const StyledTodoForm = styled.form`
   display: flex;
   align-items: center;
+  gap: 0.25rem;
+  min-height: max-content;
+  height: 2.75rem;
+
+  > * {
+    height: 100%;
+  }
 `;
 
 const TodoCreateForm = ({ todoList, setTodoList }) => {
@@ -39,9 +47,14 @@ const TodoCreateForm = ({ todoList, setTodoList }) => {
           onChange={handleTodoChange}
         ></input>
       </TextInput>
-      <button type="submit" data-testid="new-todo-add-button">
+      <Button
+        type="submit"
+        data-testid="new-todo-add-button"
+        size="medium"
+        fullHeight
+      >
         추가
-      </button>
+      </Button>
     </StyledTodoForm>
   );
 };
