@@ -31,12 +31,14 @@ const TodoCreateForm = ({ todoList, setTodoList }) => {
 
   return (
     <StyledTodoForm onSubmit={handleTodoSubmit}>
-      <TextInput
-        type="text"
-        data-testid="new-todo-input"
-        value={newTodo}
-        onChange={handleTodoChange}
-      ></TextInput>
+      <TextInput>
+        <input
+          type="text"
+          data-testid="new-todo-input"
+          value={newTodo}
+          onChange={handleTodoChange}
+        ></input>
+      </TextInput>
       <button type="submit" data-testid="new-todo-add-button">
         추가
       </button>

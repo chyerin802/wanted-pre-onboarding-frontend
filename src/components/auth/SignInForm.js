@@ -24,26 +24,34 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
-      <TextInput
-        type="email"
-        name="email"
-        id="email"
-        data-testid="email-input"
-        value={values.email}
-        onChange={handleChange}
-      ></TextInput>
-      {touched.email && errors.email && <span>{errors.email}</span>}
-      <label htmlFor="password">Password</label>
-      <TextInput
-        type="password"
-        name="password"
-        id="password"
-        data-testid="password-input"
-        value={values.password}
-        onChange={handleChange}
-      ></TextInput>
-      {touched.password && errors.password && <span>{errors.password}</span>}
+      <TextInput>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          data-testid="email-input"
+          value={values.email}
+          onChange={handleChange}
+        ></input>
+      </TextInput>
+      {touched.email && errors.email && (
+        <span className="input__error-msg">{errors.email}</span>
+      )}
+      <TextInput>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          data-testid="password-input"
+          value={values.password}
+          onChange={handleChange}
+        ></input>
+      </TextInput>
+      {touched.password && errors.password && (
+        <span className="input__error-msg">{errors.password}</span>
+      )}
       <button
         data-testid="signin-button"
         disabled={Object.keys(errors).length !== 0}
