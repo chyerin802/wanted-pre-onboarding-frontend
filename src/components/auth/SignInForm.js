@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import useForm from 'hooks/useForm';
 import authValidate from 'utils/authValidate';
 import { signInAsync } from 'api';
+import TextInput from 'components/TextInput';
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -24,24 +25,24 @@ const SignInForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label>
-      <input
+      <TextInput
         type="email"
         name="email"
         id="email"
         data-testid="email-input"
         value={values.email}
         onChange={handleChange}
-      ></input>
+      ></TextInput>
       {touched.email && errors.email && <span>{errors.email}</span>}
       <label htmlFor="password">Password</label>
-      <input
+      <TextInput
         type="password"
         name="password"
         id="password"
         data-testid="password-input"
         value={values.password}
         onChange={handleChange}
-      ></input>
+      ></TextInput>
       {touched.password && errors.password && <span>{errors.password}</span>}
       <button
         data-testid="signin-button"
