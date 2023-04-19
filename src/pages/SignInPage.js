@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import SignInForm from 'components/auth/SignInForm';
-import Title from 'components/Title';
+import AuthLayOut from 'layouts/AuthLayOut';
 import isLogin from 'utils/isLogin';
+import Button from 'components/Button';
 
 const SignInPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    console.log('hi');
     if (isLogin()) {
       navigate('/todo');
       return;
@@ -15,10 +15,14 @@ const SignInPage = () => {
   });
 
   return (
-    <div>
-      <Title>SignIn</Title>
+    <AuthLayOut title="Sign In">
       <SignInForm></SignInForm>
-    </div>
+      <div className="auth-link">
+        <Link to="/signup">
+          <Button letter>sign up</Button>
+        </Link>
+      </div>
+    </AuthLayOut>
   );
 };
 

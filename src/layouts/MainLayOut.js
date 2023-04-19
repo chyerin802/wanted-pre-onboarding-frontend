@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 const LayOut = styled.div`
   display: flex;
   justify-content: center;
-  padding: 100px;
 `;
 
 const Container = styled.div`
-  padding: 50px;
+  margin-top: 10rem;
+  width: 18rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
 `;
 
 const MainLayOut = ({ children }) => {
@@ -20,7 +24,7 @@ const MainLayOut = ({ children }) => {
 };
 
 MainLayOut.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
 };
 
 export default MainLayOut;

@@ -5,6 +5,7 @@ const StyledTitle = styled.h1`
   color: var(--main-color);
   font-size: 30px;
   font-weight: 700;
+  text-align: center;
 `;
 
 /**

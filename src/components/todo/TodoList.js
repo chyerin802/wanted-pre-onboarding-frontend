@@ -1,6 +1,11 @@
-import Todo from './Todo';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Todo from './Todo';
 import { deleteTodo } from 'api/apis/todo';
+
+const StyledTodoList = styled.ul`
+  width: 100%;
+`;
 
 const TodoList = ({ todoList, setTodoList }) => {
   const handleDeleteTodo = async (id) => {
@@ -13,7 +18,7 @@ const TodoList = ({ todoList, setTodoList }) => {
   };
 
   return (
-    <ul>
+    <StyledTodoList>
       {todoList.map((el) => {
         return (
           <Todo
@@ -25,7 +30,7 @@ const TodoList = ({ todoList, setTodoList }) => {
           />
         );
       })}
-    </ul>
+    </StyledTodoList>
   );
 };
 

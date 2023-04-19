@@ -8,7 +8,8 @@ const TodoItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  width: 100%;
+  margin-top: 0.75rem;
   > .todo-content {
     display: flex;
     align: center;

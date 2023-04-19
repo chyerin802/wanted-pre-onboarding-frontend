@@ -1,26 +1,35 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Title from 'components/Title';
 import isLogin from 'utils/isLogin';
+import Button from 'components/Button';
+
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  gap: 1rem;
+`;
 
 const MainPage = () => {
   return (
     <div>
-      <Title>Wanted Pre-onboarding</Title>
+      <Title>Pre-Onboarding</Title>
       {isLogin() ? (
-        <div>
+        <LinkWrapper>
           <Link to="/todo">
-            <button>Todo</button>
+            <Button size="large">Todo</Button>
           </Link>
-        </div>
+        </LinkWrapper>
       ) : (
-        <div>
+        <LinkWrapper>
           <Link to="/signin">
-            <button>SignIn</button>
+            <Button size="large">Sign In</Button>
           </Link>
           <Link to="/signup">
-            <button>SignUp</button>
+            <Button size="large">Sign Up</Button>
           </Link>
-        </div>
+        </LinkWrapper>
       )}
     </div>
   );

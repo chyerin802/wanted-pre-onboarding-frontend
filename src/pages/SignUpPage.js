@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import SignUpForm from 'components/auth/SignUpForm';
-import Title from 'components/Title';
+import AuthLayOut from 'layouts/AuthLayOut';
+import Button from 'components/Button';
 import isLogin from 'utils/isLogin';
 
 const SignUpPage = () => {
@@ -15,10 +16,14 @@ const SignUpPage = () => {
   }, [navigate]);
 
   return (
-    <div>
-      <Title>SignUp</Title>
+    <AuthLayOut title="Sign Up">
       <SignUpForm></SignUpForm>
-    </div>
+      <div className="auth-link">
+        <Link to="/signin">
+          <Button letter>sign in</Button>
+        </Link>
+      </div>
+    </AuthLayOut>
   );
 };
 

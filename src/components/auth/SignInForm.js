@@ -37,7 +37,7 @@ const SignInForm = () => {
         ></input>
       </TextInput>
       {touched.email && errors.email && (
-        <span className="input__error-msg">{errors.email}</span>
+        <p className="input__error-msg">{errors.email}</p>
       )}
       <TextInput>
         <label htmlFor="password">Password</label>
@@ -51,7 +51,7 @@ const SignInForm = () => {
         ></input>
       </TextInput>
       {touched.password && errors.password && (
-        <span className="input__error-msg">{errors.password}</span>
+        <p className="input__error-msg">{errors.password}</p>
       )}
       <Button
         data-testid="signin-button"

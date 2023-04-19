@@ -94,16 +94,13 @@ const StyledButton = styled.button`
 
   /* 크기 */
   ${sizeStyles}
-
-  /* 색상 */
-  ${colorStyles}
-
+  /* 색상 */ 
+  ${colorStyles} 
   /* 기타 */
-
-  ${fullWidthStyle}
-  ${fullHeightStyle}
-
-  ${disabledStyle}
+  ${fullWidthStyle} 
+  ${fullHeightStyle} 
+  
+  ${disabledStyle};
 `;
 
 function Button({
@@ -139,7 +136,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  children: PropTypes.oneOfType([(PropTypes.element, PropTypes.string)]),
+  children: PropTypes.node,
   color: PropTypes.string,
   size: PropTypes.string,
   outline: PropTypes.bool,
